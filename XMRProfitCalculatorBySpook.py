@@ -40,8 +40,8 @@ precioluz = precioluz[1:len(precioluz)]
 precioluz = float(precioluz[:len(precioluz)-2]) / 1000
 
 while True:
-    comando = input("Que quiere hacer? {}[C]alcular profit , {}[A]yuda , {}[F]órmulas, {}[E]xit: "
-                    .format(colorama.Fore.GREEN, colorama.Fore.YELLOW, colorama.Fore.BLUE,
+    comando = input("Que quiere hacer? {}[C]alcular profit , {}[P]ro Mode, {}[A]yuda , {}[F]órmulas, {}[E]xit: "
+                    .format(colorama.Fore.GREEN, colorama.Fore.MAGENTA, colorama.Fore.YELLOW, colorama.Fore.BLUE,
                             colorama.Fore.LIGHTRED_EX)+colorama.Fore.CYAN)
 
     if comando == "C":
@@ -52,19 +52,34 @@ while True:
         profit1keur = float(profit1k / 24 * horasminando)
         gananciadiaeur = hashrate * profit1keur
         # Fórmulas
-        costedia = precioluz * horasminando * pow_cost
+        costedia = (precioluz * (horasminando * pow_cost) / 1000) * horasminando
         profitdiaeur = gananciadiaeur - costedia
         profitdiaper = gananciadiaeur - costedia * 100
         # Info
         print("Ganado por día {}EUR.".format(gananciadiaeur))
         print("Coste por dia {}.".format(costedia))
         print("Profit al día {}€ o un {}%.".format(profitdiaeur, profitdiaper))
-        print("\n Tenga en cuenta que debido a que no ha seleccionado la opción pro y al constante cambio en los "
-              "precios de "
-              "luz, de la propia moneda y de la network difficulty/hashrate o pool share los valores son muy "
-              "estimados.")
+        print("\n Tenga en cuenta que debido al constante cambio en los precios de luz, de la propia moneda y de la "
+              "network difficulty/hashrate o pool share los valores son muy estimados.")
     if comando == "P":
-        
+        # Variables
+        elec_cost = float(input("Coste de la electricidad (en kW/h)"))
+        pow_cost = float(input("Consumo de energía (en vatios):"))
+        hashrate = float(input("Mining Hashrate (en kH/s):"))
+        horasminando = float(input("Horas minando al día:"))
+        profit1keur = float(profit1k / 24 * horasminando)
+        gananciadiaeur = hashrate * profit1keur
+        # Fórmulas
+        costedia = (elec_cost * (horasminando * pow_cost) / 1000) * horasminando
+        profitdiaeur = gananciadiaeur - costedia
+        profitdiaper = gananciadiaeur - costedia * 100
+        # Info
+        print("Ganado por día {}EUR.".format(gananciadiaeur))
+        print("Coste por dia {}.".format(costedia))
+        print("Profit al día {}€ o un {}%.".format(profitdiaeur, profitdiaper))
+        print("\n Tenga en cuenta que debido al constante cambio en los precios de luz, de la propia moneda y de la"
+              " network difficulty/hashrate o pool share los valores son muy estimados.")
+
     if comando == "F":
         print("Las fórmulas usadas son las siguientes:\n"
               "{}profit1k {}(es una variable que depende del H/s de la network, la network difficulty y el share de la "
@@ -112,8 +127,8 @@ while True:
               "  -No obstante le escribo los motivos de consulta más frecuentes resueltos:\n"
               "  -Dónde puedo encontrar todos los datos que la calculadora me pide?:\n"
               "  -Hashrate en H/s: Puede encontrarlo en su software de minería\n"
-              "  -Coste de la electricidad: Debe buscarlo en una página web, tenga en cuenta que este precio varía a lo"
-              "largo del día\n"
+              "  -Coste de la electricidad: SOLO SI ESTA EN MODO PRO, debe buscarlo en una página web, tenga en cuenta "
+              "que este precio varía a lo largo del día\n"
               "  -Consumo de energía en vatios: recomiendo el uso de software externo tal como HWMonitor\n"
               "  link no sponsorizado: https://www.cpuid.com/softwares/hwmonitor.html\n")
 
