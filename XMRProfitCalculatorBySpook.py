@@ -73,23 +73,53 @@ while True:
 
     if comando == "F":
         print("Las fórmulas usadas son las siguientes:\n"
-              "profit1k (es una variable que depende del H/s de la network, la network difficulty y el share de la "
+              "{}profit1k {}(es una variable que depende del H/s de la network, la network difficulty y el share de la "
               "pool "
               "en este caso calculada a día 28/08/2022 para 1kH/s por lo tanto el mayor error de la calucladora se "
               "encuentra "
               "en este valor que puede ser ajustado en el modo Pro para mas precisión)\n "
-              "profit1k = Ganancias estimadas en 24h por cada 1kH/s en euros o xmr / 24 * horasminando \n"
-              "Ganancia/Dia = Hash/s * profit1k\n"
-              "Coste/Dia = Precio electricidad * Horas minando * Voltaje del equipo\n"
-              "Profit/Dia (en euros) = Ganancia/Dia - Coste/Dia\n"
-              "Profit/Dia (en porcentaje) = Ganancia/Dia - Coste/Dia * 100\n")
+              "{}profit1k {}= {}Ganancias estimadas en 24h por cada 1kH/s en euros o xmr {}/ {}24 {}* {}Horas minando "
+              "\n"
+              "{}Ganancia/Dia = {}Hash/s {}* {}profit1k\n"
+              "{}Coste/Dia = {}Precio electricidad {}* {}Horas minando {}* {}Voltaje del equipo\n"
+              "{}Profit/Dia (en euros) = {}Ganancia/Dia {}- {}Coste/Dia\n"
+              "{}Profit/Dia (en porcentaje) = {}Ganancia/Dia {}- {}Coste/Dia {}* {}100\n".format(
+                                                                                     colorama.Fore.LIGHTBLUE_EX,
+                                                                                     colorama.Fore.RESET,
+                                                                                     colorama.Fore.LIGHTBLUE_EX,
+                                                                                     colorama.Fore.RESET,
+                                                                                     colorama.Fore.RESET,
+                                                                                     colorama.Fore.YELLOW,
+                                                                                     colorama.Fore.BLUE,
+                                                                                     colorama.Fore.YELLOW,
+                                                                                     colorama.Fore.LIGHTWHITE_EX,
+                                                                                     colorama.Fore.LIGHTGREEN_EX,
+                                                                                     colorama.Fore.RED,
+                                                                                     colorama.Fore.YELLOW,
+                                                                                     colorama.Fore.LIGHTBLUE_EX,
+                                                                                     colorama.Fore.LIGHTRED_EX,
+                                                                                     colorama.Fore.YELLOW,
+                                                                                     colorama.Fore.LIGHTYELLOW_EX,
+                                                                                     colorama.Fore.LIGHTWHITE_EX,
+                                                                                     colorama.Fore.YELLOW,
+                                                                                     colorama.Fore.CYAN,
+                                                                                     colorama.Fore.GREEN,
+                                                                                     colorama.Fore.LIGHTGREEN_EX,
+                                                                                     colorama.Fore.YELLOW,
+                                                                                     colorama.Fore.LIGHTRED_EX,
+                                                                                     colorama.Fore.GREEN,
+                                                                                     colorama.Fore.LIGHTGREEN_EX,
+                                                                                     colorama.Fore.YELLOW,
+                                                                                     colorama.Fore.LIGHTRED_EX,
+                                                                                     colorama.Fore.YELLOW,
+                                                                                     colorama.Fore.BLUE))
 
     if comando == "A":
         print("\n\nSi necesita cualquier tipo de ayuda siempre puede encontrarla en mi página de github.\n"
               "  -No obstante le escribo los motivos de consulta más frecuentes resueltos:\n"
               "  -Dónde puedo encontrar todos los datos que la calculadora me pide?:\n"
               "  -Hashrate en H/s: Puede encontrarlo en su software de minería\n"
-              "  -Coste de la electricidad: Debe buscarlo en una página web, tenga en cuenta que este precio varía a lo "
+              "  -Coste de la electricidad: Debe buscarlo en una página web, tenga en cuenta que este precio varía a lo"
               "largo del día\n"
               "  -Consumo de energía en vatios: recomiendo el uso de software externo tal como HWMonitor\n"
               "  link no sponsorizado: https://www.cpuid.com/softwares/hwmonitor.html\n"
