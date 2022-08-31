@@ -63,7 +63,8 @@ while True:
               "precios de "
               "luz, de la propia moneda y de la network difficulty/hashrate o pool share los valores son muy "
               "estimados.")
-
+    if comando == "P":
+        
     if comando == "F":
         print("Las fórmulas usadas son las siguientes:\n"
               "{}profit1k {}(es una variable que depende del H/s de la network, la network difficulty y el share de la "
