@@ -1,6 +1,8 @@
 # Arte de consola + introducción
 import pyfiglet
 import colorama
+import requests
+from bs4 import BeautifulSoup
 colorama.init(autoreset=True)
 T = str("Spook \n XMR Profit calculator")
 ASCII_art_1 = pyfiglet.figlet_format(T)
@@ -20,27 +22,41 @@ print("Disclaimer:\n"
       "simplificando el calculo de las ganancias. Gracias de nuevo por usar la herramienta y suerte con la minería.\n")
 
 # Comienzo del código
+
+#Profit estimado
+URL = "https://bitinfocharts.com/monero/"
+page = requests.get(URL)
+soup = BeautifulSoup(page.content, "html.parser")
+profit1k = str(soup.find(id="tdid32"))
+profit1k = profit1k[16:len(profit1k)]
+profit1k = profit1k.split(" ")
+profit1k = float(profit1k[0])
+#Precio luz
+URL2 = "https://preciosdelaluz.es/"
+page2 = requests.get(URL2)
+soup2 = BeautifulSoup(page2.content, "html.parser")
+precioluz = str(soup2.find_all("div", class_="preciomed")).split("span")[1]
+precioluz = precioluz[1:len(precioluz)]
+precioluz = float(precioluz[:len(precioluz)-2]) / 1000
+
 while True:
-    comando = input("Que quiere hacer? {}[C]alcular profit , {}[A]yuda , {}[F]órmulas, {}[P]ro Mode, {}[E]xit: "
-                    .format(colorama.Fore.GREEN, colorama.Fore.YELLOW, colorama.Fore.BLUE, colorama.Fore.LIGHTGREEN_EX,
+    comando = input("Que quiere hacer? {}[C]alcular profit , {}[A]yuda , {}[F]órmulas, {}[E]xit: "
+                    .format(colorama.Fore.GREEN, colorama.Fore.YELLOW, colorama.Fore.BLUE,
                             colorama.Fore.LIGHTRED_EX)+colorama.Fore.CYAN)
 
     if comando == "C":
         # Variables
-        elec_cost = float(input("Coste de la electricidad (en €/Wh):"))
         pow_cost = float(input("Consumo de energía (en vatios):"))
         hashrate = float(input("Mining Hashrate (en kH/s):"))
         horasminando = float(input("Horas minando al día:"))
-        profit1keur = float(0.024 / 24 * horasminando)
-        profit1kxmr = float(0.0001619 / 24 * horasminando)
+        profit1keur = float(profit1k / 24 * horasminando)
         gananciadiaeur = hashrate * profit1keur
-        gananciadiaxmr = hashrate * profit1kxmr
         # Fórmulas
-        costedia = elec_cost * horasminando * pow_cost
+        costedia = precioluz * horasminando * pow_cost
         profitdiaeur = gananciadiaeur - costedia
         profitdiaper = gananciadiaeur - costedia * 100
         # Info
-        print("Ganado por día {}XMR o {}EUR.".format(gananciadiaxmr, gananciadiaeur))
+        print("Ganado por día {}EUR.".format(gananciadiaeur))
         print("Coste por dia {}.".format(costedia))
         print("Profit al día {}€ o un {}%.".format(profitdiaeur, profitdiaper))
         print("\n Tenga en cuenta que debido a que no ha seleccionado la opción pro y al constante cambio en los "
@@ -48,37 +64,13 @@ while True:
               "luz, de la propia moneda y de la network difficulty/hashrate o pool share los valores son muy "
               "estimados.")
 
-    if comando == "P":
-        # Variables
-        elec_costact = float(input("Coste de la electricidad (en €/Wh):"))
-        pow_costact = float(input("Consumo de energía (en vatios):"))
-        hashrateact = float(input("Mining Hashrate (en kH/s): "))
-        horasminandoact = float(input("Horas minando al día: "))
-        profit1keuract = float(input("Profit/Día/1kH/s en euros: "))
-        profit1kxmract = float(input("Profit/Día/1kH/s en XMR: "))
-        profit1keuract2 = profit1keuract / 24 * horasminandoact
-        profit1kxmract2 = profit1kxmract / 24 * horasminandoact
-        gananciadiaeuract = hashrateact * profit1keuract2
-        gananciadiaxmract = hashrateact * profit1kxmract2
-        # Fórmulas
-        costediaact = elec_costact * horasminandoact * pow_costact
-        profitdiaeuract = gananciadiaeuract - costediaact
-        profitdiaperact = gananciadiaeuract - costediaact * 100
-        # Info
-        print("Ganado por día {}XMR o {}EUR.".format(gananciadiaxmract, gananciadiaeuract))
-        print("Coste por dia {}.".format(costediaact))
-        print("Profit al día {}€ o un {}%.".format(profitdiaeuract, profitdiaperact))
-        print("\n Tenga en cuenta que debido a que los shares de la pool, y el precio de la luz no es constante"
-              "este valor es una buena aproximación pero no es el valor exacto del profit.")
-
     if comando == "F":
         print("Las fórmulas usadas son las siguientes:\n"
               "{}profit1k {}(es una variable que depende del H/s de la network, la network difficulty y el share de la "
               "pool "
-              "en este caso calculada a día 28/08/2022 para 1kH/s por lo tanto el mayor error de la calucladora se "
-              "encuentra "
-              "en este valor que puede ser ajustado en el modo Pro para mas precisión)\n "
-              "{}profit1k {}= {}Ganancias estimadas en 24h por cada 1kH/s en euros o xmr {}/ {}24 {}* {}Horas minando "
+              "por lo tanto el mayor error de la calucladora se encuentra "
+              "en este valor\n "
+              "{}profit1k {}= {}Ganancias estimadas en 24h por cada 1kH/s en euros {}/ {}24 {}* {}Horas minando "
               "\n"
               "{}Ganancia/Dia = {}Hash/s {}* {}profit1k\n"
               "{}Coste/Dia = {}Precio electricidad {}* {}Horas minando {}* {}Voltaje del equipo\n"
@@ -122,10 +114,7 @@ while True:
               "  -Coste de la electricidad: Debe buscarlo en una página web, tenga en cuenta que este precio varía a lo"
               "largo del día\n"
               "  -Consumo de energía en vatios: recomiendo el uso de software externo tal como HWMonitor\n"
-              "  link no sponsorizado: https://www.cpuid.com/softwares/hwmonitor.html\n"
-              "  -Si está en modo PRO puede que le interese buscar el valor de profit1k actual\n"
-              "personalmente uso la página https://bitinfocharts.com/monero/ (de nuevo mención no sponsorizada)\n"
-              "aunque puede calcularlo usted mismo.\n")
+              "  link no sponsorizado: https://www.cpuid.com/softwares/hwmonitor.html\n")
 
     if comando == "E":
         quit()
