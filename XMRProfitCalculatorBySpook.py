@@ -31,6 +31,7 @@ profit1k = str(soup.find(id="tdid32"))
 profit1k = profit1k[16:len(profit1k)]
 profit1k = profit1k.split(" ")
 profit1k = float(profit1k[0])
+
 #Precio luz
 URL2 = "https://preciosdelaluz.es/"
 page2 = requests.get(URL2)
@@ -39,6 +40,7 @@ precioluz = str(soup2.find_all("div", class_="preciomed")).split("span")[1]
 precioluz = precioluz[1:len(precioluz)]
 precioluz = float(precioluz[:len(precioluz)-2]) / 1000
 
+#Loop del programa
 while True:
     comando = input("Que quiere hacer? {}[C]alcular profit , {}[P]ro Mode, {}[A]yuda , {}[F]órmulas, {}[E]xit: "
                     .format(colorama.Fore.GREEN, colorama.Fore.MAGENTA, colorama.Fore.YELLOW, colorama.Fore.BLUE,
@@ -81,48 +83,56 @@ while True:
               " network difficulty/hashrate o pool share los valores son muy estimados.")
 
     if comando == "F":
+        #Fórmulas explicadas
         print("Las fórmulas usadas son las siguientes:\n"
               "{}profit1k {}(es una variable que depende del H/s de la network, la network difficulty y el share de la "
               "pool "
               "por lo tanto el mayor error de la calucladora se encuentra "
-              "en este valor\n "
-              "{}profit1k {}= {}Ganancias estimadas en 24h por cada 1kH/s en euros {}/ {}24 {}* {}Horas minando "
+              "en este valor\n"
+              "{}profit1k {}= {}(Ganancias estimadas en 24h por cada 1kH/s en euros) {}/ {}24 {}* {}Horas minando "
               "\n"
-              "{}Ganancia/Dia = {}Hash/s {}* {}profit1k\n"
-              "{}Coste/Dia = {}Precio electricidad {}* {}Horas minando {}* {}Voltaje del equipo\n"
-              "{}Profit/Dia (en euros) = {}Ganancia/Dia {}- {}Coste/Dia\n"
-              "{}Profit/Dia (en porcentaje) = {}Ganancia/Dia {}- {}Coste/Dia {}* {}100\n".format(
+              "{}Ganancia/Dia {}= {}Hash/s {}* {}profit1k\n"
+              "{}Coste/Dia {}= {}Precio electricidad {}* {}Horas minando {}* {}Voltaje del equipo\n"
+              "{}Profit/Dia {}(en euros) {}= {}Ganancia/Dia {}- {}Coste/Dia\n"
+              "{}Profit/Dia {}(en porcentaje) {}= {}Ganancia/Dia {}- {}Coste/Dia {}* {}100\n".format(
                                                                                      colorama.Fore.LIGHTBLUE_EX,
                                                                                      colorama.Fore.RESET,
                                                                                      colorama.Fore.LIGHTBLUE_EX,
+                                                                                     colorama.Fore.LIGHTYELLOW_EX,
                                                                                      colorama.Fore.RESET,
-                                                                                     colorama.Fore.RESET,
-                                                                                     colorama.Fore.YELLOW,
+                                                                                     colorama.Fore.LIGHTYELLOW_EX,
                                                                                      colorama.Fore.BLUE,
-                                                                                     colorama.Fore.YELLOW,
-                                                                                     colorama.Fore.LIGHTWHITE_EX,
-                                                                                     colorama.Fore.LIGHTGREEN_EX,
-                                                                                     colorama.Fore.RED,
-                                                                                     colorama.Fore.YELLOW,
-                                                                                     colorama.Fore.LIGHTBLUE_EX,
-                                                                                     colorama.Fore.LIGHTRED_EX,
-                                                                                     colorama.Fore.YELLOW,
                                                                                      colorama.Fore.LIGHTYELLOW_EX,
                                                                                      colorama.Fore.LIGHTWHITE_EX,
+                                                                                     colorama.Fore.LIGHTGREEN_EX,
+                                                                                     colorama.Fore.LIGHTYELLOW_EX,
+                                                                                     colorama.Fore.RED,
+                                                                                     colorama.Fore.LIGHTYELLOW_EX,
+                                                                                     colorama.Fore.LIGHTBLUE_EX,
+                                                                                     colorama.Fore.LIGHTRED_EX,
+                                                                                     colorama.Fore.LIGHTYELLOW_EX,
+                                                                                     colorama.Fore.LIGHTYELLOW_EX,
                                                                                      colorama.Fore.YELLOW,
+                                                                                     colorama.Fore.LIGHTWHITE_EX,
+                                                                                     colorama.Fore.LIGHTYELLOW_EX,
                                                                                      colorama.Fore.CYAN,
                                                                                      colorama.Fore.GREEN,
+                                                                                     colorama.Fore.RESET,
+                                                                                     colorama.Fore.LIGHTYELLOW_EX,
                                                                                      colorama.Fore.LIGHTGREEN_EX,
-                                                                                     colorama.Fore.YELLOW,
+                                                                                     colorama.Fore.LIGHTYELLOW_EX,
                                                                                      colorama.Fore.LIGHTRED_EX,
                                                                                      colorama.Fore.GREEN,
+                                                                                     colorama.Fore.RESET,
+                                                                                     colorama.Fore.LIGHTYELLOW_EX,
                                                                                      colorama.Fore.LIGHTGREEN_EX,
-                                                                                     colorama.Fore.YELLOW,
+                                                                                     colorama.Fore.LIGHTYELLOW_EX,
                                                                                      colorama.Fore.LIGHTRED_EX,
-                                                                                     colorama.Fore.YELLOW,
+                                                                                     colorama.Fore.LIGHTYELLOW_EX,
                                                                                      colorama.Fore.BLUE))
 
     if comando == "A":
+        #Tab de ayuda sobre el uso del programa
         print("\n\nSi necesita cualquier tipo de ayuda siempre puede encontrarla en mi página de github.\n"
               "  -No obstante le escribo los motivos de consulta más frecuentes resueltos:\n"
               "  -Dónde puedo encontrar todos los datos que la calculadora me pide?:\n"
