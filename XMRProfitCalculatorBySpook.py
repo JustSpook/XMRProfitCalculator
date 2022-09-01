@@ -8,7 +8,7 @@ ART = str("Spook \n XMR Profit calculator")
 ASCII_art_1 = pyfiglet.figlet_format(ART)
 print(ASCII_art_1)
 print(
-    "Bienvenidos a mi calculador de profit de XMR, para usarlo solo introduzca los datos pedidos en el formato"
+    "Bienvenidos a mi calculador de profit de XMR, para usarlo solo introduzca los datos pedidos en el formato "
     "correcto.\n\nPara buscar estos datos recomiendo el uso de páginas webs externas y el uso de software externo para "
     "datos como el voltaje de su equipo.\n")
 print(
