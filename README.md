@@ -1,6 +1,6 @@
 # XMRProfitCalculator By Spook
 Profit calculator for XMR(monero) mining
-Bienvenidos a mi calculador de profit de XMR, para usarlo solo introduzca los datos pedidos en el formatocorrecto.
+Bienvenidos a mi calculador de profit de XMR, para usarlo solo introduzca los datos pedidos en el formato correcto.
 
 Para buscar estos datos recomiendo el uso de páginas webs externas y el uso de software externo para datos como el voltaje de su equipo.
 
