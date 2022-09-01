@@ -52,7 +52,7 @@ while True:
         profit1keur = float(profit1k / 24 * horasminando)
         gananciadiaeur = hashrate * profit1keur
         # Fórmulas
-        costedia = (precioluz * (horasminando * pow_cost)) * horasminando
+        costedia = precioluz * horasminando * pow_cost
         profitdiaeur = gananciadiaeur - costedia
         profitdiaper = gananciadiaeur - costedia * 100
         # Info
@@ -70,7 +70,7 @@ while True:
         profit1keur = float(profit1k / 24 * horasminando)
         gananciadiaeur = hashrate * profit1keur
         # Fórmulas
-        costedia = (elec_cost * (horasminando * pow_cost) / 1000) * horasminando
+        costedia = (elec_cost * (horasminando * pow_cost) / 1000) 
         profitdiaeur = gananciadiaeur - costedia
         profitdiaper = gananciadiaeur - costedia * 100
         # Info
