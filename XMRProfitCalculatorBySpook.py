@@ -4,8 +4,8 @@ import colorama
 import requests
 from bs4 import BeautifulSoup
 colorama.init(autoreset=True)
-T = str("Spook \n XMR Profit calculator")
-ASCII_art_1 = pyfiglet.figlet_format(T)
+ART = str("Spook \n XMR Profit calculator")
+ASCII_art_1 = pyfiglet.figlet_format(ART)
 print(ASCII_art_1)
 print(
     "Bienvenidos a mi calculador de profit de XMR, para usarlo solo introduzca los datos pedidos en el formato"
@@ -70,7 +70,7 @@ while True:
         profit1keur = float(profit1k / 24 * horasminando)
         gananciadiaeur = hashrate * profit1keur
         # Fórmulas
-        costedia = (elec_cost * (horasminando * pow_cost) / 1000) 
+        costedia = (elec_cost * (horasminando * pow_cost) / 1000)
         profitdiaeur = gananciadiaeur - costedia
         profitdiaper = gananciadiaeur - costedia * 100
         # Info
