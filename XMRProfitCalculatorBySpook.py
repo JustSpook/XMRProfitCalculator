@@ -51,12 +51,13 @@ while True:
         pow_cost = float(input("Consumo de energía (en vatios):"))
         hashrate = float(input("Mining Hashrate (en kH/s):"))
         horasminando = float(input("Horas minando al día:"))
-        profit1keur = float(profit1k / 24 * horasminando) 
+        profit1keur = float(profit1k / 24 * horasminando)
+
         # Fórmulas
         gananciadiaeur = hashrate * profit1keur
         costedia = precioluz * horasminando * pow_cost
         profitdiaeur = gananciadiaeur - costedia
-        profitdiaper = gananciadiaeur - costedia * 100
+        profitdiaper = (gananciadiaeur - costedia) * 100
         # Info
         print("Ganado por día {}EUR.".format(gananciadiaeur))
         print("Coste por dia {}.".format(costedia))
